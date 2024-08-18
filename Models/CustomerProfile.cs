@@ -12,6 +12,7 @@ namespace ST10296167_CLDV6212_POE.Models
         public ETag ETag { get; set; }
 
         // Custom properties
+        public int CustomerID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }

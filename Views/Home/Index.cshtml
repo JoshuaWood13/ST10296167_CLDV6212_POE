@@ -4,27 +4,76 @@
     ViewData["Title"] = "Home Page";
 }
 
+<head>
+    <style>
+        body{
+            background-color: skyblue;
+        }
+        p { 
+            margin-bottom: 5px;
+            margin-top: 5px;
+        }
 
-<form asp-action="UploadImage" method="post" enctype="multipart/form-data">
-    <input type="file" name="file" />
-    <button type="submit">Upload Image</button>
-</form>
+        button {
+            margin-bottom: 20px;
+            margin-top: 15px;
+        }
+        .selectImage {
+            margin-top: 10px;
+        }
+    </style>
+</head>
 
-<form asp-action="AddCustomerProfile" method="post">
-    <input type="text" name="FirstName" placeholder="First Name" />
-    <input type="text" name="LastName" placeholder="Last Name" />
-    <input type="email" name="Email" placeholder="Email" />
-    <input type="text" name="PhoneNumber" placeholder="Phone Number" />
-    <button type="submit">Add Profile</button>
-</form>
+<h1>Home</h1>
 
-<form asp-action="ProcessOrder" method="post">
-    <input type="text" name="orderId" placeholder="Order ID" />
-    <button type="submit">Process Order</button>
-</form>
+<body>
+    <h2>Create Customer Profile</h2>
+    <form asp-action="AddCustomerProfile" method="post">
+        <p>First Name:</p>
+        <input type="text" name="FirstName" />
+        <p>Last Name:</p>
+        <input type="text" name="LastName"  />
+        <p>Email:</p>
+        <input type="email" name="Email" />
+        <p>Phone Number:</p>
+        <input type="text" name="PhoneNumber" />
+        <p></p>
+        <button type="submit">Add Profile</button>
+    </form>
 
-<form asp-action="UploadContract" method="post" enctype="multipart/form-data">
-    <input type="file" name="file" />
-    <button type="submit">Upload Contract</button>
-</form>
+    <h2>Store An Image</h2>
+    <form asp-action="UploadImage" method="post" enctype="multipart/form-data">
+        <label class="CustomFileInput">
+            <input class="selectImage" type="file" name="file" accept="image/*"/>
+        </label>
+        <p></p>
+        <button type="submit">Upload Image</button>
+    </form>
 
+    <h2>Store A File</h2>
+    <form asp-action="UploadFiles" method="post" enctype="multipart/form-data">
+        <label class="CustomFileInput">
+            <input type="file" name="file" accept=".pdf,.doc,.docx,.txt"/>
+        </label>
+        <p></p>
+        <button type="submit">Upload Contract</button>
+    </form>
+
+    <h2>Proccess Q Ting</h2>
+    <form asp-action="ProcessOrder" method="post">
+        <p>Order ID:</p>
+        <input type="text" name="orderId" />
+        <p></p>
+        <button type="submit">Process Order</button>
+    </form>
+</body>
+
+@* @section Scripts { *@
+    <script>
+        @if (TempData["UploadError"] != null)
+        {
+            <text>
+                alert('@TempData["UploadError"]');
+            </text>
+        }
+    </script>

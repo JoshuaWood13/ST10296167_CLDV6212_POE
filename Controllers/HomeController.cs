@@ -28,10 +28,14 @@ namespace ST10296167_CLDV6212_POE.Controllers
         [HttpPost]
         public async Task<IActionResult> UploadImage(IFormFile file)
         {
-            if (file != null)
+            if (file != null && IsValidImage(file))
             {
                 using var stream = file.OpenReadStream();
                 await _blobService.UploadBlobAsync("product-images", file.FileName, stream);
+            }
+            else
+            {
+                TempData["UploadError"] = "Please select a valid image file (JPEG, PNG, GIF).";
             }
             return RedirectToAction("Index");
         }
@@ -54,14 +58,30 @@ namespace ST10296167_CLDV6212_POE.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UploadContract(IFormFile file)
+        public async Task<IActionResult> UploadFiles(IFormFile file)
         {
-            if (file != null)
+            if (file != null && IsValidDocument(file))
             {
                 using var stream = file.OpenReadStream();
-                await _fileService.UploadFileAsync("contracts-logs", file.FileName, stream);
+                await _fileService.UploadFileAsync("uploaded-files", file.FileName, stream);
+            }
+            else
+            {
+                TempData["UploadError"] = "Please select a valid document file (PDF, DOC, DOCX, TXT).";
             }
             return RedirectToAction("Index");
+        }
+
+        private bool IsValidImage(IFormFile file)
+        {
+            var validImageTypes = new[] { "image/jpeg", "image/png", "image/gif" };
+            return validImageTypes.Contains(file.ContentType);
+        }
+
+        private bool IsValidDocument(IFormFile file)
+        {
+            var validDocumentTypes = new[] { "application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "text/plain" };
+            return validDocumentTypes.Contains(file.ContentType);
         }
     }
 }

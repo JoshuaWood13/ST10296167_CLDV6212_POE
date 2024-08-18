@@ -17,8 +17,34 @@ namespace ST10296167_CLDV6212_POE.Services
             _tableClient.CreateIfNotExists();
         }
 
+        //public async Task AddEntityAsync(CustomerProfile profile)
+        //{
+        //    await _tableClient.AddEntityAsync(profile);
+        //}
+
+        //------------------------------------------------------------------------------------------------------------------------------------------//
         public async Task AddEntityAsync(CustomerProfile profile)
         {
+            // Get the current max customer ID from the table
+            var existingProfile = _tableClient.Query<CustomerProfile>()
+                .OrderByDescending(p => p.CustomerID)
+                .FirstOrDefault();
+
+            // Determine the max customer ID
+            int maxCustomerID;
+            if (existingProfile == null)
+            {
+                maxCustomerID = 0; 
+            }
+            else
+            {
+                maxCustomerID = existingProfile.CustomerID;
+            }
+
+            // Increment the ID by 1
+            profile.CustomerID = maxCustomerID + 1;
+
+            // Then add the new profile
             await _tableClient.AddEntityAsync(profile);
         }
     }
