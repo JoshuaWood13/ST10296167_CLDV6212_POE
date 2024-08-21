@@ -3,16 +3,40 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ST10296167_CLDV6212_POE</title>
+    <title>@ViewData["Title"] - ABC Retail</title>
+    <link rel="icon" href="/images/abc-logo.jpg" type="image/x-icon" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ST10296167_CLDV6212_POE.styles.css" asp-append-version="true" />
+
+    <style>
+        .abc-color {
+            display: inline; /* Keeps the span inline */
+        }
+        .navbar-brand { /* setting navigation bar font and colour */
+            word-spacing: -0.3em; /* Adjust this value to tweak the spacing */
+            font-family:Harrington, sans-serif;
+        }
+        .nav-item { /* setting the font of each navigation bar item */
+            font-family:Impact, sans-serif;
+        }
+        .abc-color {
+            letter-spacing: normal; /* Ensures normal spacing */
+            font-family: Impact, sans-serif; /* Ensures consistent font */
+            display: inline-block; /* Keeps the span inline with regular spacing */
+        }
+    </style>
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ABC Retail</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <span class="abc-color" style="color:green;">A</span>
+                    <span class="abc-color" style="color:blue;">B</span>
+                    <span class="abc-color" style="color:red; margin-right: 5px;">C</span>
+                    Retail
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -23,7 +47,16 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="CustomerProfile">Create Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Product">Add Product</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Store">Store</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Processing">Processing</a>
                         </li>
                     </ul>
                 </div>
@@ -38,7 +71,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2024 - ST10296167_CLDV6212_POE
+            &copy; 2024 - JoshuaWood_ST10296167_CLDV6212_POE
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

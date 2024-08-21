@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "Add Product";
+}
+
+<head>
+    <style>
+        body {
+            background-color: skyblue;
+            text-align: center;
+        }
+
+        p {
+            margin-bottom: 5px;
+            margin-top: 5px;
+        }
+
+        button {
+            margin-bottom: 20px;
+            margin-top: 15px;
+        }
+
+        .selectImage {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Add Product</h1>
+
+    <form asp-action="AddProduct" method="post">
+        <p>Product Name:</p>
+        <input type="text" name="ProductName" />
+        <p>Product Price:</p>
+        <input type="text" name="ProductPrice" />
+        <p>Product Category:</p>
+        <input type="number" name="ProductCategory" />
+        <p></p>
+        <button type="submit">Add Product</button>
+    </form>
+</body>

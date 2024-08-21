@@ -25,6 +25,24 @@ namespace ST10296167_CLDV6212_POE.Controllers
             return View();
         }
 
+        public IActionResult CustomerProfile()
+        {
+            return View();
+        }
+        public IActionResult Product()
+        {
+            return View();
+        }
+
+        public IActionResult Store()
+        {
+            return View();
+        }
+        public IActionResult Processing()
+        {
+            return View();
+        }
+
         [HttpPost]
         public async Task<IActionResult> UploadImage(IFormFile file)
         {
@@ -51,9 +69,19 @@ namespace ST10296167_CLDV6212_POE.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> ProcessOrder(string orderId)
+        public async Task<IActionResult> AddProduct(Products product)
         {
-            await _queueService.SendMessageAsync("order-processing", $"Processing order {orderId}");
+            if (ModelState.IsValid)
+            {
+                await _tableService.AddProductAsync(product);
+            }
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ProcessOrder(string orderID)
+        {
+            await _queueService.SendMessageAsync("order-processing", $"Processing order {orderID}");
             return RedirectToAction("Index");
         }
 

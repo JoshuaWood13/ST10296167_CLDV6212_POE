@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "Processing";
+}
+
+<head>
+    <style>
+        body {
+            background-color: skyblue;
+            text-align:center;
+        }
+
+        h1 {
+            margin-bottom: 40px;
+        }
+
+        p {
+            margin-bottom: 5px;
+            margin-top: 5px;
+        }
+
+        button {
+            margin-bottom: 20px;
+            margin-top: 15px;
+        }
+
+        .selectImage {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Processing</h1>
+    <h2>Proccess order</h2>
+    <form asp-action="ProcessOrder" method="post">
+        <p>Order ID:</p>
+        <input type="text" name="orderId" />
+        <p></p>
+        <button type="submit">Process Order</button>
+    </form>
+</body>

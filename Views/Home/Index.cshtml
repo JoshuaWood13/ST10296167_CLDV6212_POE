@@ -1,19 +1,18 @@
 ﻿@model ST10296167_CLDV6212_POE.Models.CustomerProfile
 
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
 }
 
 <head>
     <style>
         body{
             background-color: skyblue;
+            text-align: center;
         }
-        p { 
-            margin-bottom: 5px;
-            margin-top: 5px;
+        h1{
+            text-align: center;
         }
-
         button {
             margin-bottom: 20px;
             margin-top: 15px;
@@ -21,59 +20,25 @@
         .selectImage {
             margin-top: 10px;
         }
+        ul{
+            list-style-position: inside; 
+            padding-left: 0; 
+            display: inline-block; 
+            text-align: left; 
+        }
     </style>
 </head>
 
 <h1>Home</h1>
 
 <body>
-    <h2>Create Customer Profile</h2>
-    <form asp-action="AddCustomerProfile" method="post">
-        <p>First Name:</p>
-        <input type="text" name="FirstName" />
-        <p>Last Name:</p>
-        <input type="text" name="LastName"  />
-        <p>Email:</p>
-        <input type="email" name="Email" />
-        <p>Phone Number:</p>
-        <input type="text" name="PhoneNumber" />
-        <p></p>
-        <button type="submit">Add Profile</button>
-    </form>
-
-    <h2>Store An Image</h2>
-    <form asp-action="UploadImage" method="post" enctype="multipart/form-data">
-        <label class="CustomFileInput">
-            <input class="selectImage" type="file" name="file" accept="image/*"/>
-        </label>
-        <p></p>
-        <button type="submit">Upload Image</button>
-    </form>
-
-    <h2>Store A File</h2>
-    <form asp-action="UploadFiles" method="post" enctype="multipart/form-data">
-        <label class="CustomFileInput">
-            <input type="file" name="file" accept=".pdf,.doc,.docx,.txt"/>
-        </label>
-        <p></p>
-        <button type="submit">Upload Contract</button>
-    </form>
-
-    <h2>Proccess Q Ting</h2>
-    <form asp-action="ProcessOrder" method="post">
-        <p>Order ID:</p>
-        <input type="text" name="orderId" />
-        <p></p>
-        <button type="submit">Process Order</button>
-    </form>
+    <p>Welcome to ABC Retail!</p>
+    <p>Feel free to use any of the following of the following functionality:</p>
+    <ul>
+        <li><a href="/Home/CustomerProfile">Create a Customer Profile</a></li>
+        <li><a href="/Home/Product">Add a Product </a></li>
+        <li><a href="/Home/Store">Store Images or Files</a></li>
+        <li><a href="/Home/Processing">Process an Order</a></li>
+    </ul>
 </body>
 
-@* @section Scripts { *@
-    <script>
-        @if (TempData["UploadError"] != null)
-        {
-            <text>
-                alert('@TempData["UploadError"]');
-            </text>
-        }
-    </script>

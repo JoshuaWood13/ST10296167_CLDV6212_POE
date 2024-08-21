@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Create Profile";
+}
+
+<head>
+    <style>
+        body {
+            background-color: skyblue;
+            text-align: center;
+        }
+
+        p {
+            margin-bottom: 5px;
+            margin-top: 5px;
+        }
+
+        button {
+            margin-bottom: 20px;
+            margin-top: 15px;
+        }
+
+        .selectImage {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Create Customer Profile</h1>
+
+    <form asp-action="AddCustomerProfile" method="post">
+        <p>First Name:</p>
+        <input type="text" name="FirstName" />
+        <p>Last Name:</p>
+        <input type="text" name="LastName" />
+        <p>Email:</p>
+        <input type="email" name="Email" />
+        <p>Phone Number:</p>
+        <input type="text" name="PhoneNumber" />
+        <p></p>
+        <button type="submit">Add Profile</button>
+    </form>
+</body>

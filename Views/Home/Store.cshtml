@@ -1,0 +1,68 @@
+﻿@{
+    ViewData["Title"] = "Store";
+}
+
+<head>
+    <style>
+        body {
+            background-color: skyblue;
+            text-align: center;
+        }
+
+        h1{
+            margin-bottom: 40px;
+        }
+
+        p {
+            margin-bottom: 5px;
+            margin-top: 5px;
+        }
+
+        button {
+            margin-bottom: 20px;
+            margin-top: 15px;
+        }
+
+        .selectFile {
+            margin-top: 10px;
+        }
+
+        .CustomFileInput{
+            margin-left: 195px;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <h1>Storage Options:</h1>
+    <h2>Store Product Image</h2>
+    <form asp-action="UploadImage" method="post" enctype="multipart/form-data">
+        <label class="CustomFileInput">
+            <input class="selectFile" type="file" name="file" accept="image/*" />
+        </label>
+        <p></p>
+        <button type="submit">Upload Image</button>
+    </form>
+
+    <h2>Store Contract or Log File</h2>
+    <form asp-action="UploadFiles" method="post" enctype="multipart/form-data">
+        <label class="CustomFileInput">
+            <input class="selectFile" type="file" name="file" accept=".pdf,.doc,.docx,.txt" />
+        </label>
+        <p></p>
+        <button type="submit">Upload File</button>
+    </form>
+
+</body>
+
+@* @section Scripts { *@
+<script>
+    @if (TempData["UploadError"] != null)
+    {
+        <text>
+            alert('@TempData["UploadError"]');
+        </text>
+    }
+</script>
