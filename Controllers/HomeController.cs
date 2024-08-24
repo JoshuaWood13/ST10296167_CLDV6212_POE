@@ -81,7 +81,16 @@ namespace ST10296167_CLDV6212_POE.Controllers
         [HttpPost]
         public async Task<IActionResult> ProcessOrder(string orderID)
         {
-            await _queueService.SendMessageAsync("order-processing", $"Processing order {orderID}");
+            string queueMessage = $"Processing order {orderID}";
+            await _queueService.SendMessageAsync("order-processing", queueMessage);
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateInventory(string productName, int quantity, string inventoryState)
+        {
+            string queueMessage = $"{quantity} units of {productName} are {inventoryState}";
+            await _queueService.SendMessageAsync("inventory-management", queueMessage);
             return RedirectToAction("Index");
         }
 

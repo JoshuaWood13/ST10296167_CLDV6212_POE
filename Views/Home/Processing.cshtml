@@ -10,12 +10,15 @@
         }
 
         h1 {
-            margin-bottom: 40px;
+            margin-bottom: 20px;
+            font-family: Algerian, sans-serif;
+            font-size: 60px;
         }
 
         p {
             margin-bottom: 5px;
             margin-top: 5px;
+            font-family: Constantia, sans-serif;
         }
 
         button {
@@ -37,5 +40,20 @@
         <input type="text" name="orderId" />
         <p></p>
         <button type="submit">Process Order</button>
+    </form>
+
+    <h2>Update Inventory</h2>
+    <form asp-action="UpdateInventory" method="post">
+        <p>Product name:</p>
+        <input type="text" name="productName" />
+        <p>Quantity:</p>
+        <input type="number" name="quantity" />
+        <p>Set Inventory State:</p>
+        <select name="inventoryState">
+            <option value="Inbound">Inbound</option>
+            <option value="Outbound">Outbound</option>
+        </select>
+        <p></p>
+        <button type="submit">Update</button>
     </form>
 </body>
