@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using ST10296167_CLDV6212_POE.Models;
 using ST10296167_CLDV6212_POE.Services;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 namespace ST10296167_CLDV6212_POE.Controllers
 {
@@ -11,7 +12,7 @@ namespace ST10296167_CLDV6212_POE.Controllers
         private readonly TableService _tableService;
         private readonly QueueService _queueService;
         private readonly FileService _fileService;
-
+//------------------------------------------------------------------------------------------------------------------------------------------//
         public HomeController(BlobService blobService, TableService tableService, QueueService queueService, FileService fileService)
         {
             _blobService = blobService;
@@ -19,7 +20,7 @@ namespace ST10296167_CLDV6212_POE.Controllers
             _queueService = queueService;
             _fileService = fileService;
         }
-
+//------------------------------------------------------------------------------------------------------------------------------------------//
         public IActionResult Index()
         {
             return View();
@@ -42,7 +43,8 @@ namespace ST10296167_CLDV6212_POE.Controllers
         {
             return View();
         }
-
+//------------------------------------------------------------------------------------------------------------------------------------------//
+        // This method handles uploading a valid image file to the product-images Azure Blob storage
         [HttpPost]
         public async Task<IActionResult> UploadImage(IFormFile file)
         {
@@ -58,6 +60,7 @@ namespace ST10296167_CLDV6212_POE.Controllers
             return RedirectToAction("Index");
         }
 
+        // This method adds a user-input customer profie to the CustomerProfiles Azure table
         [HttpPost]
         public async Task<IActionResult> AddCustomerProfile(CustomerProfile profile)
         {
@@ -68,6 +71,7 @@ namespace ST10296167_CLDV6212_POE.Controllers
             return RedirectToAction("Index");
         }
 
+        // This method adds a user-input product to the Products Azure table 
         [HttpPost]
         public async Task<IActionResult> AddProduct(Products product)
         {
@@ -78,6 +82,7 @@ namespace ST10296167_CLDV6212_POE.Controllers
             return RedirectToAction("Index");
         }
 
+        // This method handles constructing an order processing queue based on user input 
         [HttpPost]
         public async Task<IActionResult> ProcessOrder(string orderID)
         {
@@ -86,6 +91,7 @@ namespace ST10296167_CLDV6212_POE.Controllers
             return RedirectToAction("Index");
         }
 
+        // This method handles constructing and uploading a inventory management queue based on user input
         [HttpPost]
         public async Task<IActionResult> UpdateInventory(string productName, int quantity, string inventoryState)
         {
@@ -94,6 +100,7 @@ namespace ST10296167_CLDV6212_POE.Controllers
             return RedirectToAction("Index");
         }
 
+        // This method handles to uploading of a valid document file to the uploaded-files Azure file storage
         [HttpPost]
         public async Task<IActionResult> UploadFiles(IFormFile file)
         {
@@ -108,17 +115,20 @@ namespace ST10296167_CLDV6212_POE.Controllers
             }
             return RedirectToAction("Index");
         }
-
+//------------------------------------------------------------------------------------------------------------------------------------------//
+        //This method checks if the correct image file type is selected for upload
         private bool IsValidImage(IFormFile file)
         {
             var validImageTypes = new[] { "image/jpeg", "image/png", "image/gif" };
             return validImageTypes.Contains(file.ContentType);
         }
 
+        //This method checks if the correct text/document file type is selected for upload
         private bool IsValidDocument(IFormFile file)
         {
             var validDocumentTypes = new[] { "application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "text/plain" };
             return validDocumentTypes.Contains(file.ContentType);
         }
+//------------------------------------------------------------------------------------------------------------------------------------------//
     }
 }

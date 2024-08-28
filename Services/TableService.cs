@@ -22,15 +22,10 @@ namespace ST10296167_CLDV6212_POE.Services
             _productsTableClient.CreateIfNotExists();
         }
 
-        //public async Task AddEntityAsync(CustomerProfile profile)
-        //{
-        //    await _tableClient.AddEntityAsync(profile);
-        //}
-
-        //------------------------------------------------------------------------------------------------------------------------------------------//
+//------------------------------------------------------------------------------------------------------------------------------------------//
         public async Task AddEntityAsync(CustomerProfile profile)
         {
-            // Get the current max customer ID from the table
+            // Get the current max customer ID from the Azure table
             var existingProfile = _customerTableClient.Query<CustomerProfile>()
                 .OrderByDescending(p => p.CustomerID)
                 .FirstOrDefault();
@@ -49,13 +44,13 @@ namespace ST10296167_CLDV6212_POE.Services
             // Increment the ID by 1
             profile.CustomerID = maxCustomerID + 1;
 
-            // Then add the new profile
+            // Add the new profile
             await _customerTableClient.AddEntityAsync(profile);
         }
-
+//------------------------------------------------------------------------------------------------------------------------------------------//
         public async Task AddProductAsync(Products product)
         {
-            // Get the current max ProductID from the table
+            // Get the current max Product ID the Azure table
             var existingProduct = _productsTableClient.Query<Products>()
                 .OrderByDescending(p => p.ProductID)
                 .FirstOrDefault();
@@ -69,5 +64,6 @@ namespace ST10296167_CLDV6212_POE.Services
             // Add the new product
             await _productsTableClient.AddEntityAsync(product);
         }
+//------------------------------------------------------------------------------------------------------------------------------------------//
     }
 }

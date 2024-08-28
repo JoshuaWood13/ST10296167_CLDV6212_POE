@@ -13,7 +13,7 @@ namespace ST10296167_CLDV6212_POE.Services
         {
             _blobServiceClient = new BlobServiceClient(configuration["AzureStorage:ConnectionString"]);
         }
-
+//------------------------------------------------------------------------------------------------------------------------------------------//
         public async Task UploadBlobAsync(string containerName, string blobName, Stream content)
         {
             var containerClient = _blobServiceClient.GetBlobContainerClient(containerName);
@@ -21,5 +21,6 @@ namespace ST10296167_CLDV6212_POE.Services
             var blobClient = containerClient.GetBlobClient(blobName);
             await blobClient.UploadAsync(content, true);
         }
+//------------------------------------------------------------------------------------------------------------------------------------------//
     }
 }
