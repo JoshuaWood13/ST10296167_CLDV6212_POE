@@ -1,8 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using ST10296167_CLDV6212_POE.Models;
 using ST10296167_CLDV6212_POE.Services;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using System.Text;
+using static System.Net.WebRequestMethods;
 
 namespace ST10296167_CLDV6212_POE.Controllers
 {
@@ -43,7 +46,13 @@ namespace ST10296167_CLDV6212_POE.Controllers
         {
             return View();
         }
-//------------------------------------------------------------------------------------------------------------------------------------------//
+
+        public IActionResult Error()
+        {
+            var requestId = HttpContext.TraceIdentifier;
+            return View(new ErrorViewModel { RequestId = requestId });
+        }
+        //------------------------------------------------------------------------------------------------------------------------------------------//
         // This method handles uploading a valid image file to the product-images Azure Blob storage
         [HttpPost]
         public async Task<IActionResult> UploadImage(IFormFile file)
@@ -58,7 +67,7 @@ namespace ST10296167_CLDV6212_POE.Controllers
                 TempData["UploadError"] = "Please select a valid image file (JPEG, PNG, GIF).";
             }
             return RedirectToAction("Index");
-        }
+        }       
 
         // This method adds a user-input customer profie to the CustomerProfiles Azure table
         [HttpPost]
@@ -69,7 +78,7 @@ namespace ST10296167_CLDV6212_POE.Controllers
                 await _tableService.AddEntityAsync(profile);
             }
             return RedirectToAction("Index");
-        }
+        }     
 
         // This method adds a user-input product to the Products Azure table 
         [HttpPost]

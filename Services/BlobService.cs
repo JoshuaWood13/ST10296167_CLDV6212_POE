@@ -3,6 +3,8 @@ using Microsoft.Extensions.Configuration;
 using System.IO;
 using System.Threading.Tasks;
 
+using System.Net.Http.Headers;
+
 namespace ST10296167_CLDV6212_POE.Services
 {
     public class BlobService
@@ -21,6 +23,6 @@ namespace ST10296167_CLDV6212_POE.Services
             var blobClient = containerClient.GetBlobClient(blobName);
             await blobClient.UploadAsync(content, true);
         }
-//------------------------------------------------------------------------------------------------------------------------------------------//
+        //------------------------------------------------------------------------------------------------------------------------------------------//
     }
 }

@@ -48,4 +48,9 @@
         <p></p>
         <button type="submit">Add Profile</button>
     </form>
+
+    @if (ViewBag.Message != null)
+    {
+        <p><strong>@ViewBag.Message</strong></p>  <!-- Display success or error message here -->
+    }
 </body>
