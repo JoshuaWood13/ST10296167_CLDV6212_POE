@@ -54,6 +54,7 @@ namespace ST10296167_CLDV6212_POE.Controllers
         }
         //------------------------------------------------------------------------------------------------------------------------------------------//
         // This method handles uploading a valid image file to the product-images Azure Blob storage
+        // REPLACED BY AZURE FUNCTION
         [HttpPost]
         public async Task<IActionResult> UploadImage(IFormFile file)
         {
@@ -70,6 +71,7 @@ namespace ST10296167_CLDV6212_POE.Controllers
         }       
 
         // This method adds a user-input customer profie to the CustomerProfiles Azure table
+        // REPLACED BY AZURE FUNCTION
         [HttpPost]
         public async Task<IActionResult> AddCustomerProfile(CustomerProfile profile)
         {
@@ -92,6 +94,7 @@ namespace ST10296167_CLDV6212_POE.Controllers
         }
 
         // This method handles constructing an order processing queue based on user input 
+        // REPLACED BY AZURE FUNCTION
         [HttpPost]
         public async Task<IActionResult> ProcessOrder(string orderID)
         {
@@ -101,6 +104,7 @@ namespace ST10296167_CLDV6212_POE.Controllers
         }
 
         // This method handles constructing and uploading a inventory management queue based on user input
+        // REPLACED BY AZURE FUNCTION
         [HttpPost]
         public async Task<IActionResult> UpdateInventory(string productName, int quantity, string inventoryState)
         {
@@ -110,6 +114,7 @@ namespace ST10296167_CLDV6212_POE.Controllers
         }
 
         // This method handles to uploading of a valid document file to the uploaded-files Azure file storage
+        // REPLACED BY AZURE FUNCTION
         [HttpPost]
         public async Task<IActionResult> UploadFiles(IFormFile file)
         {
@@ -141,3 +146,4 @@ namespace ST10296167_CLDV6212_POE.Controllers
 //------------------------------------------------------------------------------------------------------------------------------------------//
     }
 }
+//--------------------------------------------------------X END OF FILE X-------------------------------------------------------------------//
