@@ -38,7 +38,9 @@
     <h2>Proccess Order</h2>
     <form asp-action="ProcessOrder" method="post">
         <p>Order ID:</p>
-        <input type="text" name="orderId" />
+        <input type="number" name="orderId" />
+        <p>Customer ID:</p>
+        <input type="number" name="customerId" />
         <p></p>
         <button type="submit">Process Order</button>
     </form>

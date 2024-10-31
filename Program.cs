@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Configuration;
 using ST10296167_CLDV6212_POE.Services;
 
 namespace ST10296167_CLDV6212_POE

@@ -77,7 +77,7 @@ namespace ST10296167_CLDV6212_POE.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _tableService.AddEntityAsync(profile);
+                await _tableService.AddCustomerAsync(profile);
             }
             return RedirectToAction("Index");
         }     
