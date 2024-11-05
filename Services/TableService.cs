@@ -15,6 +15,8 @@ namespace ST10296167_CLDV6212_POE.Services
         private readonly TableClient _productsTableClient;
         private readonly IConfiguration _configuration;
 
+        // Controller
+        //------------------------------------------------------------------------------------------------------------------------------------------//
         public TableService(IConfiguration configuration)
         {
             var connectionString = configuration["AzureStorage:ConnectionString"];
@@ -28,8 +30,8 @@ namespace ST10296167_CLDV6212_POE.Services
 
             _configuration = configuration;
         }
-
-//------------------------------------------------------------------------------------------------------------------------------------------//
+        //------------------------------------------------------------------------------------------------------------------------------------------//
+        // This method handles uploading a customer profile to the Azure Table along with an incrementing ID
         public async Task AddCustomerAsync(CustomerProfile profile)
         {
             // Get the current max customer ID from the Azure table
@@ -54,7 +56,8 @@ namespace ST10296167_CLDV6212_POE.Services
             // Add the new profile
             await _customerTableClient.AddEntityAsync(profile);
         }
-//------------------------------------------------------------------------------------------------------------------------------------------//
+        //------------------------------------------------------------------------------------------------------------------------------------------//
+        // This method handles uploading a product's information to the Azure Table along with an incrementing ID
         public async Task AddProductAsync(Products product)
         {
             // Get the current max Product ID the Azure table
@@ -71,7 +74,8 @@ namespace ST10296167_CLDV6212_POE.Services
             // Add the new product
             await _productsTableClient.AddEntityAsync(product);
         }
-//------------------------------------------------------------------------------------------------------------------------------------------//
+        //------------------------------------------------------------------------------------------------------------------------------------------//
+        // This method handles uplaoding customer profile data to the SQl db
         public async Task InsertCustomerDb(CustomerProfile profile)
         {
             var connectionString = _configuration["ConnectionString:AzureDatabase"];
@@ -90,7 +94,8 @@ namespace ST10296167_CLDV6212_POE.Services
                 await command.ExecuteNonQueryAsync();
             }
         }
-//------------------------------------------------------------------------------------------------------------------------------------------//
+        //------------------------------------------------------------------------------------------------------------------------------------------//
+        // This method handles uploading product information to the SQL db
         public async Task InsertProductDb(Products product)
         {
             var connectionString = _configuration["ConnectionString:AzureDatabase"];
@@ -108,6 +113,7 @@ namespace ST10296167_CLDV6212_POE.Services
                 await command.ExecuteNonQueryAsync();
             }
         }
-//------------------------------------------------------------------------------------------------------------------------------------------//
+        //------------------------------------------------------------------------------------------------------------------------------------------//
     }
 }
+//--------------------------------------------------------X END OF FILE X-------------------------------------------------------------------//

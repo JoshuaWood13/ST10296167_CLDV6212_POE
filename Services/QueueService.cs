@@ -10,19 +10,23 @@ namespace ST10296167_CLDV6212_POE.Services
         private readonly QueueServiceClient _queueServiceClient;
         private readonly IConfiguration _configuration;
 
+        // Controller
+        //------------------------------------------------------------------------------------------------------------------------------------------//
         public QueueService(IConfiguration configuration)
         {
             _queueServiceClient = new QueueServiceClient(configuration["AzureStorage:ConnectionString"]);
             _configuration = configuration;
         }
-//------------------------------------------------------------------------------------------------------------------------------------------//
+        //------------------------------------------------------------------------------------------------------------------------------------------//
+        // This method handles uploading a message to the correct Azure Queue
         public async Task SendMessageAsync(string queueName, string message)
         {
             var queueClient = _queueServiceClient.GetQueueClient(queueName);
             await queueClient.CreateIfNotExistsAsync();
             await queueClient.SendMessageAsync(message);
         }
-//------------------------------------------------------------------------------------------------------------------------------------------//
+        //------------------------------------------------------------------------------------------------------------------------------------------//
+        // This method handles storing select data from the queue message to the SQL db
         public async Task InsertOrderInfoDbAsync(string orderID, string customerID)
         {
             var connectionString = _configuration["ConnectionString:AzureDatabase"];
@@ -38,5 +42,7 @@ namespace ST10296167_CLDV6212_POE.Services
                 await command.ExecuteNonQueryAsync();
             }
         }
+        //------------------------------------------------------------------------------------------------------------------------------------------//
     }
 }
+//--------------------------------------------------------X END OF FILE X-------------------------------------------------------------------//

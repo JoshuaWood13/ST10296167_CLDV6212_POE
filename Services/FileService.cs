@@ -10,11 +10,14 @@ namespace ST10296167_CLDV6212_POE.Services
     {
         private readonly ShareServiceClient _shareServiceClient;
 
+        // Controller
+        //------------------------------------------------------------------------------------------------------------------------------------------//
         public FileService(IConfiguration configuration)
         {
             _shareServiceClient = new ShareServiceClient(configuration["AzureStorage:ConnectionString"]);
         }
-//------------------------------------------------------------------------------------------------------------------------------------------//
+        //------------------------------------------------------------------------------------------------------------------------------------------//
+        // This method handles uploading a file to the correct Azure File Share
         public async Task UploadFileAsync(string shareName, string fileName, Stream content)
         {
             var shareClient = _shareServiceClient.GetShareClient(shareName);
@@ -24,6 +27,7 @@ namespace ST10296167_CLDV6212_POE.Services
             await fileClient.CreateAsync(content.Length);
             await fileClient.UploadAsync(content);
         }
-//------------------------------------------------------------------------------------------------------------------------------------------//
+        //------------------------------------------------------------------------------------------------------------------------------------------//
     }
 }
+//--------------------------------------------------------X END OF FILE X-------------------------------------------------------------------//

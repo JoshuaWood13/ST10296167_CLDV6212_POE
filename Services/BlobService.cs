@@ -13,12 +13,15 @@ namespace ST10296167_CLDV6212_POE.Services
         private readonly BlobServiceClient _blobServiceClient;
         private readonly IConfiguration _configuration;
 
+        // Controller
+        //------------------------------------------------------------------------------------------------------------------------------------------//
         public BlobService(IConfiguration configuration)
         {
             _blobServiceClient = new BlobServiceClient(configuration["AzureStorage:ConnectionString"]);
             _configuration = configuration;
         }
         //------------------------------------------------------------------------------------------------------------------------------------------//
+        // This method handles getting the correct Azure Blob Container and uploading a blob
         public async Task UploadBlobAsync(string containerName, string blobName, Stream content)
         {
             var containerClient = _blobServiceClient.GetBlobContainerClient(containerName);
@@ -27,6 +30,7 @@ namespace ST10296167_CLDV6212_POE.Services
             await blobClient.UploadAsync(content, true);
         }
         //------------------------------------------------------------------------------------------------------------------------------------------//
+        // This method handles uploading blob data to the SQl db
         public async Task InsertBlobDbAsync(byte[] imageData, string imageName)
         {
             var connectionString = _configuration["ConnectionString:AzureDatabase"];
@@ -45,3 +49,4 @@ namespace ST10296167_CLDV6212_POE.Services
         //------------------------------------------------------------------------------------------------------------------------------------------//
     }
 }
+//--------------------------------------------------------X END OF FILE X-------------------------------------------------------------------//
